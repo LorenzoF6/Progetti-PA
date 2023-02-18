@@ -10,7 +10,7 @@ data Tree a = Empty | Node a (Tree a) (Tree a)  deriving (Eq,Show)
 -- x == a : l'albero è invariato e come = si ha l'espressione che ricostruisce lo stesso albero
 -- x < a : elemento più piccolo della radice, si continua la ricerca per l'inserimento nel sotto-albero sinistro
 -- x > a : caso duale
-insert :: (Ord a) => a -> Tree a -> Tree a
+insert :: Ord a => a -> Tree a -> Tree a
 insert x Empty = Node x Empty Empty
 insert x (Node a left right)
     | x == a = Node x left right
@@ -84,7 +84,7 @@ symmetricalVisit Empty = []
 symmetricalVisit (Node x left right) = symmetricalVisit left ++ [x] ++ symmetricalVisit right
 
 --Ricerca di un elemento nell'albero
-searchElem :: (Ord a) => a -> Tree a -> Bool
+searchElem :: Ord a => a -> Tree a -> Bool
 searchElem x Empty = False
 searchElem x (Node a left right)
     | x == a = True
