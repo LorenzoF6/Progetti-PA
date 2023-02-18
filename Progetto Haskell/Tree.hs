@@ -121,16 +121,13 @@ isBinaryTree (Node x left right) = isBinaryTree left && isBinaryTree right
                                    && (isEmpty right || x < minElem right)
                                                          
 --Visualizzazione dell'albero
---
---
---
---
---
+--(1) stampa sullo standard output della lista contenente la struttura dell'albero
+--(2) costruzione in modo ricorsivo della struttura dell'albero
 printTree :: Show a => Tree a -> IO ()
-printTree = (mapM_ putStrLn) . treeIndent
-  where
-    treeIndent Empty = ["-- /-"]
-    treeIndent (Node x left right) = ["--" ++ (show x)] ++ map ("  |" ++) l ++ ("  `" ++ r) : map ("   " ++) rs
+printTree = (mapM_ putStrLn) . treeIndent (1)
+  where 
+    treeIndent Empty = ["-- /-"] (2)
+    treeIndent (Node x left right) = ["--" ++ (show x)] ++ map ("  |" ++) l ++ ("  `" ++ r) : map ("   " ++) rs (2)
       where
         (r:rs) = treeIndent $ right
         l      = treeIndent $ left
