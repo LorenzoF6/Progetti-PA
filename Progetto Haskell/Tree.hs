@@ -137,5 +137,31 @@ printTree = (mapM_ putStrLn) . treeIndent (1)
 --TEST 
 --Main di prova per testare il modulo Tree.hs
 {--main = do
-       let bst
+       let bst = treeFromList [40,31,2,4,33,45,78,3,10,12,5,25]
+       let symBst = symmetricalVisit bst
+       let antBst = anticipatedVisit bst
+       let max = maxElem bst 
+       let min = minElem bst
+       let d = depth bst
+       let lN = leafNumb bst
+
+       putStrLn "Numero di foglie:" ++ lN ++ "\n"
+       putStrLn "Profondità albero:" ++ d ++ "\n"
+       putStrLn "Visita anticipata:" ++ antBst ++ "\n"
+	 putStrLn "Visita simmtrica:" ++ symBst ++ "\n"
+       putStrLn "Elemento massimo:" ++ max ++ "\n"
+	 putStrLn "Elemento minimo:" ++ min ++ "\n"
+
+       putStrLn "\n\n"
+       print $ printTree bst
+       putStrLn "\n\n"
+       
+       let found = searchElem 4 bst
+       putStrLn "Numero 4 trovato?" ++ found ++ "\n"
+       
+       let bst1 = delete 12 bst
+       
+	 putStrLn "\n\n"
+       print $ printTree bst
+       putStrLn "\n\n"
 --}
