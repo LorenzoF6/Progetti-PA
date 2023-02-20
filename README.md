@@ -1,7 +1,7 @@
 <h1 align="center">Progetti di Programmazione Avanzata</h1>
 
 ## Breve panoramica
-La repository contiene i progetti riferiti al corso di Programmazione Avanzata tenuto dal Prof. Brugali Davide presso l'Università degli Studi di Bergamo
+La repository contiene i progetti riferiti al corso di Programmazione Avanzata tenuto dal Prof. Gargantini Angelo presso l'Università degli Studi di Bergamo
 
 ## Tipologie di Progetto
 - [x] Progetto C++
