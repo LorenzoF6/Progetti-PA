@@ -91,21 +91,16 @@ searchElem x (Node a left right)
     | x <  a = searchElem x left
     | x >  a = searchElem x right
 
---Si sfrutta il tipo Maybe = Just | Nothing, il quale incapsula un valore facoltativo
---Un valore di tipo Maybe a contiene una valore di tipo a, caso di Just a, oppure è vuoto, caso Nothing
---Maybe gestisce casi eccezzionali, come in questo caso la gestione della ricerca di un elemento in un albero vuoto
+
 --Ricerca valore Max nell'albero
-maxElem :: Tree a -> Maybe a
-maxElem Empty = Nothing 
-maxElem (Node x _ Empty) = Just a
-maxElem (Node _ _ t)    = maxElem t
+maxElem :: Tree a -> a
+maxElem (Node x _ Empty) = x
+maxElem (Node _ _ right) = maxElem right
 
 --Ricerca valore Min nell'albero
-minElem :: Tree a -> Maybe a
-minElem Empty = Nothing
-minElem (Node x Empty _) = Just x
-minElem (Node _ t _)    = minElem t
-
+minElem :: Tree a ->  a
+minElem (Node x Empty _) = x
+minElem (Node _ left _)    = minElem left
 
 --ALTRE OPERAZIONI
 --Verifica che un albero è un albero binario
@@ -124,10 +119,10 @@ isBinaryTree (Node x left right) = isBinaryTree left && isBinaryTree right
 --(1) stampa sullo standard output della lista contenente la struttura dell'albero
 --(2) costruzione in modo ricorsivo della struttura dell'albero
 printTree :: Show a => Tree a -> IO ()
-printTree = (mapM_ putStrLn) . treeIndent (1)
+printTree = (mapM_ putStrLn) . treeIndent --(1)
   where 
-    treeIndent Empty = ["-- /-"] (2)
-    treeIndent (Node x left right) = ["--" ++ (show x)] ++ map ("  |" ++) l ++ ("  `" ++ r) : map ("   " ++) rs (2)
+    treeIndent Empty = ["-- /-"] --(2)
+    treeIndent (Node x left right) = ["--" ++ (show x)] ++ map ("  |" ++) l ++ ("  `" ++ r) : map ("   " ++) rs --(2)
       where
         (r:rs) = treeIndent $ right
         l      = treeIndent $ left
@@ -145,23 +140,37 @@ printTree = (mapM_ putStrLn) . treeIndent (1)
        let d = depth bst
        let lN = leafNumb bst
 
-       putStrLn "Numero di foglie:" ++ lN ++ "\n"
-       putStrLn "Profondità albero:" ++ d ++ "\n"
-       putStrLn "Visita anticipata:" ++ antBst ++ "\n"
-	 putStrLn "Visita simmtrica:" ++ symBst ++ "\n"
-       putStrLn "Elemento massimo:" ++ max ++ "\n"
-	 putStrLn "Elemento minimo:" ++ min ++ "\n"
+       putStrLn "Elemento massimo:"
+  	print max
+  	putStrLn "\n"
 
-       putStrLn "\n\n"
-       print $ printTree bst
-       putStrLn "\n\n"
+  	putStrLn "Elemento minimo:"
+  	print min
+  	putStrLn "\n"
+  
+  	putStrLn "Numero di foglie:"
+  	print lN
+  	putStrLn "\n"
+    
+  	putStrLn "Profondità dell'albero:"
+  	print d
+  	putStrLn "\n"
+
+  	putStrLn "Visita anticipata:\n"
+  	print antBst
+  	putStrLn "Visita posticipata:\n"
+  	print symBst
+
+      putStrLn "\n\n"
+      printTree bst
+      putStrLn "\n\n"
        
-       let found = searchElem 4 bst
-       putStrLn "Numero 4 trovato?" ++ found ++ "\n"
-       
-       let bst1 = delete 12 bst
-       
-	 putStrLn "\n\n"
-       print $ printTree bst
-       putStrLn "\n\n"
+      let found = searchElem 4 bst
+      putStrLn "Numero 4 trovato?"
+  	print found
+      
+      let bst1 = delete 12 bst       
+	putStrLn "\n\n"
+      printTree bst
+      putStrLn "\n\n"
 --}
