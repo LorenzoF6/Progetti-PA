@@ -22,6 +22,7 @@ L'intera documentazione è disponibile al seguente []
     ├── Java                   # Progetto di Java
     ├── Haskell                # Progetto di Haskell 
     ├── Docs                   # Documentazione dei relativi progetti
+    ├── Diagrams               # Diagramma delle classi relativi ai progetti di C++ e Java
     └── README.md
 
 ## Autore
